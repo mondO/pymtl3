@@ -44,4 +44,4 @@ class ComponentTraversePass( BasePass ):
     # Get a list of two connected signals in the order they are connected
     connect_order = component.get_connect_order()
     # Do something here...
-    print(f"{name} {in_ports} {out_ports} {wires} {connect_order}")
+    print(f"name:{name} in_ports:{in_ports} out_ports:{out_ports} wires:{wires} connect_order:{connect_order}\n")
