@@ -284,9 +284,9 @@ class BehavioralRTLIRTypeCheckVisitorL1( bir.BehavioralRTLIRNodeVisitor ):
     upper_val = None if not hasattr(node.upper, "_value") else node.upper._value
     dtype = node.value.Type.get_dtype()
 
-    if not isinstance( dtype, rdt.Vector ):
-      raise PyMTLTypeError( s.blk, node.ast,
-        'cannot perform slicing on type {}!'.format(dtype))
+    # if not isinstance( dtype, rdt.Vector ):
+    #   raise PyMTLTypeError( s.blk, node.ast,
+    #     'cannot perform slicing on type {}!'.format(dtype))
 
     if not lower_val is None and not upper_val is None:
       signal_nbits = dtype.get_length()

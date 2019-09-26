@@ -77,6 +77,28 @@ class BitStruct:
       )
     return self.to_bits() != other.to_bits()
 
+  # Hack the subscript of a BitStruct
+  def __setitem__( self, key, val ):
+    from copy import deepcopy
+    # import pdb
+    # pdb.set_trace()
+    assert key.start and key.stop
+    fields = self.__class__.fields
+    fields = deepcopy(fields)
+    fields.reverse()
+    # Only allow assignment to a field
+    cur_pos = 0
+    # print(fields)
+    for name, Type in fields:
+      end_pos = cur_pos + Type.nbits
+      if (cur_pos == key.start) and (end_pos == key.stop):
+        # Got the field that will be accessed
+        setattr(self, name, val)
+        return
+      cur_pos += Type.nbits
+    print("Not found!")
+    assert False
+
 #-------------------------------------------------------------------------
 # Dynamically generate bit struct
 #-------------------------------------------------------------------------
