@@ -1,32 +1,105 @@
 #=========================================================================
-# ComponentTraversePass.py
+# SvgGenerationPass.py
 #=========================================================================
-# Traverse the component hierarchy and generates a list of names of
-# components that have the `marked` attribute.
+# 
 #
-# Author : Peitian Pan
-# Date   : Aug 1, 2019
+# Author : Greg Nelson
+# Date   : Sep 15, 2019
 
 from pymtl3 import *
 from pymtl3.passes.BasePass import BasePass, PassMetadata
 
+# from netlistsvg import *
+
 class SvgGenerationPass( BasePass ):
 
-  def __call__( s, top ):
-    # Make sure we have the pass's namespace
-    if not hasattr(top, "_pass_svg_generation"):
-      top._pass_svg_generation = PassMetadata()
+    def __call__( s, top ):
+       
+        if not hasattr(top, "_pass_svg_generation"):
+            top._pass_svg_generation = PassMetadata()
 
-    s.marked = []
-    s.ports = []
-    s.cells = []
-    s.traverse_hierarchy( top )
-    s.module = SvgGenerationPass.Module(s.ports, s.cells)
-    print(s.module)
-    # Write result to the pass's namespace
-    top._pass_svg_generation.marked_components = \
-        [c.__repr__() for c in s.marked]
+        marked = s.find_marked(top)
+        s.ports = []
+        s.cells = []
+        in_ports = marked.get_input_value_ports()
+        out_ports = marked.get_output_value_ports()
+        ndx = 2
+        connect_order = marked.get_connect_order()
+        order={}
+        ndx = 2
+
+        #assigns a unique id to each connection
+        for (x,y) in connect_order:
+
+            if(x in order.keys()):
+                 order[x]=order[x]+[ndx]
+            else:
+                order[x]=[ndx]
+            if(y in order.keys()):
+                
+                order[y]=order[y]+[ndx]
+            else:
+                order[y]=[ndx]
+            ndx=ndx+1
+        
+        #iterates through all ports, creates its formatted json representation,
+        #and adds this string to the list of all port strings, replaces . with _
+        #becasue netlistsvg doesn't recognize port names with periods in them
+        for inPort in in_ports:
+            s.ports.append(SvgGenerationPass.Port(inPort.__repr__().replace('.','_'), "input",order[inPort]).getString())
+           
+        for outPort in out_ports:
+            s.ports.append((SvgGenerationPass.Port(outPort.__repr__().replace('.','_'), "output", order[outPort]).getString()))
+            
+        #  iterates through all child components, creates its
+        #  formatted json representation,
+        #  and adds this string to the list of all cell strings
+        for child_component in marked.get_child_components():
+            type = ""
+            if hasattr(child_component, "type"):
+                type = child_component.type
+            connectList = []
+            in_port_list = []
+            out_port_list = []
+            for inPort in child_component.get_input_value_ports():
+                inP =inPort.__repr__().replace('.','_')
+                in_port_list.append(f'"{inP}": "input"')
+                connectList.append(f'"{inP}": {order[inPort]}')
+
+            for outPort in child_component.get_output_value_ports():
+                outP =outPort.__repr__().replace('.','_')
+                out_port_list.append(f'"{outP}": "output"')
+                connectList.append(f'"{outP}": {order[outPort]}')
+                      
+            in_port_string = ', '.join(in_port_list)
+            out_port_string = ', '.join(out_port_list)
+            connect_string = ', '.join(connectList)
+            port_string = in_port_string +", "+ out_port_string
+            s.cells.append(SvgGenerationPass.Cell(child_component.__repr__(),type,port_string, connect_string).getString())
+        
+        s.module = SvgGenerationPass.Module(s.ports, s.cells)
+        print(s.module.getString())
+        
+        name =marked.__repr__()+"-netlist"
+        s.writeJSON(name,s.module.getString())
     
+    
+
+    #traverses the hiearchy until it finds the marked component and then returns it
+    def find_marked( s, component ):
+        if hasattr(component, "marked"):
+            print ("tests")
+            return component
+        for child_component in component.get_child_components():
+            s.find_marked( child_component )
+    #creates a new json file 
+    def writeJSON(s, fileName, str):
+        path = './'+ fileName + '.json'
+        f = open(path, 'w+')
+        f.write(str)
+
+
+    #JSON formatting
     class Port:
 
         def __init__ (self, name, direction, bits):
@@ -37,19 +110,16 @@ class SvgGenerationPass( BasePass ):
 
         def getString (self):
             return self.str
-
-
     class Cell:
         def __init__ (self, name, type, ports, connections):
-            self.stringPorts = ', '.join(ports)
-            self.stringConnections = ', '.join(connections)
+         
             self.str = (f'"{name}": {{'"\n"
                     f'   "type": "{type}",'"\n"
                     f'   "port_directions": {{'"\n"
-                    f'       {self.stringPorts}'"\n"
+                    f'       {ports}'"\n"
                     f'   }},'"\n"
                     f'   "connections": {{'"\n"
-                    f'       {self.stringConnections}'"\n"
+                    f'       {connections}'"\n"
                     f'   }}'"\n"
                     f'  }}'"\n")
     
@@ -57,57 +127,24 @@ class SvgGenerationPass( BasePass ):
             return self.str
 
     class Module:
-
         def __init__ (self, ports, cells):
             self.stringPorts = ', '.join(ports)
             self.stringCells = ', '.join(cells)
             self.str = (f'{{'"\n"
-                   f'   "top": {{'"\n"
-                   f'       "<module>": {{'"\n"
+                   f'   "modules": {{'"\n"
+                   f'       "module": {{'"\n"
                    f'           "ports": {{'"\n"
                    f'               {self.stringPorts}'"\n"
                    f'           }},'"\n"
                    f'           "cells": {{'"\n"
-                   f'               {self.stringCells}'"\n"
-                   f'           }},'"\n"
-                   f'       }}'"\n"
-                   f'    }}'"\n"
-                   f'}}'"\n")
-    
+                   f'               {self.stringCells}'"\n"                  
+                   f'       }},'"\n"        
+                   f'            }}'"\n"
+                   f'           }}'"\n"
+                   f'}}'"\n"
+                   
+                   ) 
+
         def getString (self):
             return self.str
 
-  def traverse_hierarchy( s, component ):
-    """Traverse the component hierarchy and call `s.process` for all components
-    that have `marked` attribute."""
-    if hasattr(component, "marked"):
-      s.process( component )
-
-    for child_component in component.get_child_components():
-      s.traverse_hierarchy( child_component )
-
-
-  def process( s, component ):
-    """Customized process method to be called for each marked component."""
-    name = component.__repr__()
-    # Get a list of all input/output ports of `component`
-    in_ports = component.get_input_value_ports()
-    out_ports = component.get_output_value_ports()
-    # Get a list of all wires of `componentx`
-    wires = component.get_wires()
-    # Get a list of two connected signals in the order they are connected
-    connect_order = component.get_connect_order()
-    # Do something here...
-    # print(f"name:{name} in_ports:{in_ports} out_ports:{out_ports} wires:{wires} connect_order:{connect_order}\n")
-    in_port_list = []
-    out_port_list = []
-
-    for inPort in in_ports:
-        in_port_list.append(f'"{inPort}": "input"')
-    in_port_string = ', '.join(in_port_list)
-    
-    for outPort in out_ports:
-        out_port_list.append(f'"{outPort}": "output"')
-    out_port_string = ', '.join(out_port_list)
-    port_string = in_port_string +", "+ out_port_string
-    s.cells.append(SvgGenerationPass.Cell(name,'',port_string,'Not Implemented'))
