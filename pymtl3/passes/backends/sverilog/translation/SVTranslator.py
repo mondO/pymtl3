@@ -6,7 +6,7 @@
 """Provide SystemVerilog translator."""
 
 from pymtl3.passes.backends.generic import RTLIRTranslator
-from pymtl3.passes.backends.sverilog.util.utility import sverilog_reserved
+from pymtl3.passes.backends.sverilog.utils.utility import sverilog_reserved
 
 from .behavioral import SVBehavioralTranslator as SV_BTranslator
 from .structural import SVStructuralTranslator as SV_STranslator

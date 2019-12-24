@@ -11,9 +11,10 @@ import pytest
 
 from pymtl3.datatypes import Bits1, Bits16, Bits32, clog2, mk_bits
 from pymtl3.dsl import Component, InPort, Interface, OutPort
-from pymtl3.passes.rtlir.util.test_utility import do_test
-
-from ..util.test_utility import closed_loop_component_input_test
+from pymtl3.passes.backends.sverilog.utils.test_utility import (
+    closed_loop_component_input_test,
+)
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 
 seed( 0xdeadebeef )
 

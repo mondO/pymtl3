@@ -19,7 +19,7 @@ from pymtl3.passes.rtlir.behavioral.BehavioralRTLIRTypeCheckL5Pass import (
     BehavioralRTLIRTypeCheckL5Pass,
 )
 from pymtl3.passes.rtlir.errors import PyMTLTypeError
-from pymtl3.passes.rtlir.util.test_utility import do_test, expected_failure
+from pymtl3.passes.rtlir.utils.test_utility import do_test, expected_failure
 from pymtl3.passes.testcases import (
     CaseArrayBits32SubCompPassThroughComp,
     CaseBits32SubCompPassThroughComp,

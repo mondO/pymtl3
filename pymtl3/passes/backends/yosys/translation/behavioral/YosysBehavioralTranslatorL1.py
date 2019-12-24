@@ -11,7 +11,7 @@ from pymtl3.passes.backends.sverilog.translation.behavioral.SVBehavioralTranslat
     BehavioralRTLIRToSVVisitorL1,
     SVBehavioralTranslatorL1,
 )
-from pymtl3.passes.backends.sverilog.util.utility import make_indent
+from pymtl3.passes.backends.utils.utility import make_indent
 from pymtl3.passes.rtlir import BehavioralRTLIR as bir
 from pymtl3.passes.rtlir import RTLIRDataType as rdt
 from pymtl3.passes.rtlir import RTLIRType as rt

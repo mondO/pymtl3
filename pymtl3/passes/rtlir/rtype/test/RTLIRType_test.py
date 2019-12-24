@@ -9,7 +9,7 @@ from pymtl3 import Bits16
 from pymtl3.passes.rtlir.errors import RTLIRConversionError
 from pymtl3.passes.rtlir.rtype import RTLIRDataType as rdt
 from pymtl3.passes.rtlir.rtype import RTLIRType as rt
-from pymtl3.passes.rtlir.util.test_utility import expected_failure
+from pymtl3.passes.rtlir.utils.test_utility import expected_failure
 from pymtl3.passes.testcases import (
     CaseBits32InOutx5CompOnly,
     CaseBits32MsgRdyIfcOnly,

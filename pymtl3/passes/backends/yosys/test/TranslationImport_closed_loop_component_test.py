@@ -13,8 +13,10 @@ from pymtl3.passes.backends.sverilog.test.TranslationImport_closed_loop_componen
     test_struct,
     test_subcomp,
 )
-from pymtl3.passes.backends.sverilog.util.test_utility import closed_loop_component_test
-from pymtl3.passes.rtlir.util.test_utility import do_test
+from pymtl3.passes.backends.sverilog.utils.test_utility import (
+    closed_loop_component_test,
+)
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 
 
 def local_do_test( m ):

@@ -21,7 +21,7 @@ from pymtl3.passes.backends.sverilog.import_.test.SVImportSignalGen_test import 
     test_struct_port_single,
 )
 from pymtl3.passes.rtlir import RTLIRType as rt
-from pymtl3.passes.rtlir.util.test_utility import do_test
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 
 from ..ImportPass import ImportPass
 

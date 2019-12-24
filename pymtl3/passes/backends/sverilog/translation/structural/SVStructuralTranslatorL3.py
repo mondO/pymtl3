@@ -6,10 +6,10 @@
 from pymtl3.passes.backends.generic.structural.StructuralTranslatorL3 import (
     StructuralTranslatorL3,
 )
+from pymtl3.passes.backends.utils.utility import make_indent
 from pymtl3.passes.rtlir import RTLIRDataType as rdt
 from pymtl3.passes.rtlir import RTLIRType as rt
 
-from ...util.utility import make_indent
 from .SVStructuralTranslatorL2 import SVStructuralTranslatorL2
 
 

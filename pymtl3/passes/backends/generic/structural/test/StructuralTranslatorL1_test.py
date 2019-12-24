@@ -9,7 +9,7 @@ import pytest
 
 from pymtl3 import Bits4, Bits16
 from pymtl3.passes.rtlir.errors import RTLIRConversionError
-from pymtl3.passes.rtlir.util.test_utility import expected_failure
+from pymtl3.passes.rtlir.utils.test_utility import expected_failure
 
 from ...testcases import (
     CaseBits32ArrayClosureConstruct,

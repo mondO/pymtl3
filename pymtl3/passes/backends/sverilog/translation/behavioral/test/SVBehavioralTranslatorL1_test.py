@@ -7,9 +7,9 @@
 
 import pytest
 
-from pymtl3.passes.backends.sverilog.util.utility import sverilog_reserved
+from pymtl3.passes.backends.sverilog.utils.utility import sverilog_reserved
 from pymtl3.passes.rtlir import BehavioralRTLIRGenPass, BehavioralRTLIRTypeCheckPass
-from pymtl3.passes.rtlir.util.test_utility import expected_failure
+from pymtl3.passes.rtlir.utils.test_utility import expected_failure
 
 from ....errors import SVerilogTranslationError
 from ....testcases import (

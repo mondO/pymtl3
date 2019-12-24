@@ -7,7 +7,7 @@
 
 import pytest
 
-from pymtl3.passes.rtlir.util.test_utility import get_parameter
+from pymtl3.passes.rtlir.utils.test_utility import get_parameter
 from pymtl3.stdlib.test import TestVectorSimulator
 
 from ..translation.behavioral.test.YosysBehavioralTranslatorL1_test import (

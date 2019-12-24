@@ -11,7 +11,7 @@ from pymtl3.passes.rtlir.behavioral import (
     BehavioralRTLIRGenPass,
     BehavioralRTLIRTypeCheckPass,
 )
-from pymtl3.passes.rtlir.util.test_utility import do_test, expected_failure
+from pymtl3.passes.rtlir.utils.test_utility import do_test, expected_failure
 from pymtl3.passes.testcases import (
     CaseBits32ClosureConstruct,
     CaseBits32ClosureGlobal,

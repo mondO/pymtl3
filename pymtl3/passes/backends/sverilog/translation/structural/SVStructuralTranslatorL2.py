@@ -6,9 +6,9 @@
 from pymtl3.passes.backends.generic.structural.StructuralTranslatorL2 import (
     StructuralTranslatorL2,
 )
+from pymtl3.passes.backends.utils.utility import make_indent
 from pymtl3.passes.rtlir import RTLIRDataType as rdt
 
-from ...util.utility import make_indent
 from .SVStructuralTranslatorL1 import SVStructuralTranslatorL1
 
 

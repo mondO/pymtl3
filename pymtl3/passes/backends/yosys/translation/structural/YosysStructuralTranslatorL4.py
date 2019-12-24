@@ -9,7 +9,7 @@ from pymtl3.passes.backends.sverilog.errors import SVerilogTranslationError
 from pymtl3.passes.backends.sverilog.translation.structural.SVStructuralTranslatorL4 import (
     SVStructuralTranslatorL4,
 )
-from pymtl3.passes.backends.sverilog.util.utility import make_indent
+from pymtl3.passes.backends.utils.utility import make_indent
 
 from .YosysStructuralTranslatorL3 import YosysStructuralTranslatorL3
 

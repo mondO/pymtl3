@@ -8,11 +8,11 @@
 
 from pymtl3.datatypes import Bits1, Bits32, Bits64, clog2, mk_bits
 from pymtl3.dsl import Component, InPort, Interface, OutPort, Placeholder, connect
-from pymtl3.passes.rtlir.util.test_utility import do_test
+from pymtl3.passes.backends.utils.utility import get_dir
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 from pymtl3.stdlib.test import TestVectorSimulator
 
 from ... import ImportConfigs, ImportPass
-from ...util.utility import get_dir
 
 
 def local_do_test( _m ):

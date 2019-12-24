@@ -7,7 +7,7 @@
 
 import pytest
 
-from pymtl3.passes.rtlir.util.test_utility import expected_failure, get_parameter
+from pymtl3.passes.rtlir.utils.test_utility import expected_failure, get_parameter
 
 from ..behavioral.test.BehavioralTranslatorL1_test import (
     test_generic_behavioral_L1 as behavioral,

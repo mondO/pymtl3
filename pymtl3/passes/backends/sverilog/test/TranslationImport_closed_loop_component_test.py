@@ -11,9 +11,10 @@ from hypothesis import HealthCheck, given, reproduce_failure, settings
 
 from pymtl3.datatypes import Bits1, Bits16, Bits32, bitstruct, clog2, mk_bits
 from pymtl3.dsl import Component, InPort, Interface, OutPort, Wire, connect
-from pymtl3.passes.rtlir.util.test_utility import do_test
-
-from ..util.test_utility import closed_loop_component_test
+from pymtl3.passes.backends.sverilog.utils.test_utility import (
+    closed_loop_component_test,
+)
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 
 too_slow = [ HealthCheck.too_slow ]
 

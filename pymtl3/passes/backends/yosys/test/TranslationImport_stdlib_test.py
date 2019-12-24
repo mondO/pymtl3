@@ -23,7 +23,7 @@ from pymtl3.passes.backends.sverilog.test.TranslationImport_stdlib_test import (
     test_normal_Bits,
     test_pipe_Bits,
 )
-from pymtl3.passes.rtlir.util.test_utility import do_test
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 from pymtl3.stdlib.test import TestVectorSimulator
 
 from ..TranslationImportPass import TranslationImportPass

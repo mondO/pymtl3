@@ -9,7 +9,7 @@ from pymtl3.datatypes import Bits1, Bits32, bitstruct
 from pymtl3.dsl import Component, InPort, Interface, OutPort
 from pymtl3.passes.rtlir import RTLIRDataType as rdt
 from pymtl3.passes.rtlir import RTLIRType as rt
-from pymtl3.passes.rtlir.util.test_utility import do_test
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 
 from ..ImportPass import ImportPass
 

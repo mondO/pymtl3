@@ -11,7 +11,7 @@ from pymtl3.passes.backends.sverilog.errors import SVerilogTranslationError
 from pymtl3.passes.backends.sverilog.translation.structural.SVStructuralTranslatorL1 import (
     SVStructuralTranslatorL1,
 )
-from pymtl3.passes.backends.sverilog.util.utility import make_indent
+from pymtl3.passes.backends.utils.utility import make_indent
 from pymtl3.passes.rtlir import RTLIRDataType as rdt
 
 

@@ -15,9 +15,9 @@ from functools import reduce
 
 import pymtl3.dsl as dsl
 from pymtl3.datatypes import Bits, is_bitstruct_class, is_bitstruct_inst
+from pymtl3.passes.rtlir.utils.utility import collect_objs
 
 from ..errors import RTLIRConversionError
-from ..util.utility import collect_objs
 
 
 class BaseRTLIRDataType:

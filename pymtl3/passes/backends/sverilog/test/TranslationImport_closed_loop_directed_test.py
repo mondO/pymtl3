@@ -6,8 +6,11 @@
 """Closed-loop test with SystemVerilog translation and import."""
 
 from pymtl3.datatypes import Bits1, mk_bits
+from pymtl3.passes.backends.sverilog.utils.test_utility import (
+    closed_loop_component_input_test,
+)
 from pymtl3.passes.PassGroups import SimulationPass
-from pymtl3.passes.rtlir.util.test_utility import do_test
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 from pymtl3.stdlib.rtl.enrdy_queues_test import test_bypass_queue as _bypass_queue
 from pymtl3.stdlib.rtl.enrdy_queues_test import (
     test_bypass_queue_stall as _bypass_queue_stall,
@@ -22,7 +25,6 @@ from pymtl3.stdlib.rtl.enrdy_queues_test import (
 )
 
 from .. import TranslationImportPass
-from ..util.test_utility import closed_loop_component_input_test
 
 #-------------------------------------------------------------------------
 # Valrdy queue tests

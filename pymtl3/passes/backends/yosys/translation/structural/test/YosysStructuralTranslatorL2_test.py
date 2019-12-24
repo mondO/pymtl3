@@ -7,8 +7,8 @@
 
 import pytest
 
-from pymtl3.passes.backends.sverilog.util.test_utility import check_eq
-from pymtl3.passes.backends.sverilog.util.utility import sverilog_reserved
+from pymtl3.passes.backends.sverilog.utils.utility import sverilog_reserved
+from pymtl3.passes.backends.utils.test_utility import check_eq
 
 from ....testcases import (
     CaseConnectArrayStructAttrToOutComp,

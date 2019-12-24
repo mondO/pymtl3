@@ -9,7 +9,7 @@ from pymtl3.passes.backends.sverilog.translation.behavioral.SVBehavioralTranslat
     BehavioralRTLIRToSVVisitorL2,
     SVBehavioralTranslatorL2,
 )
-from pymtl3.passes.backends.sverilog.util.utility import make_indent
+from pymtl3.passes.backends.utils.utility import make_indent
 
 from .YosysBehavioralTranslatorL1 import (
     YosysBehavioralRTLIRToSVVisitorL1,

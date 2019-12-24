@@ -6,12 +6,12 @@
 """Test if the shared library was closed at the end of simulation."""
 
 from pymtl3 import *
-from pymtl3.passes.rtlir.util.test_utility import do_test
+from pymtl3.passes.backends.utils.utility import get_file_hash
+from pymtl3.passes.rtlir.utils.test_utility import do_test
 from pymtl3.stdlib.test import TestVectorSimulator
 
 from .. import TranslationImportPass
 from ..import_.ImportConfigs import ImportConfigs
-from ..util.utility import get_file_hash
 
 
 def run_test( _m ):

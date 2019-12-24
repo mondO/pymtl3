@@ -5,8 +5,8 @@
 
 import pytest
 
-from pymtl3.passes.backends.sverilog.util.test_utility import check_eq
-from pymtl3.passes.rtlir.util.test_utility import get_parameter
+from pymtl3.passes.backends.utils.test_utility import check_eq
+from pymtl3.passes.rtlir.utils.test_utility import get_parameter
 
 from ..behavioral.test.YosysBehavioralTranslatorL5_test import (
     test_yosys_behavioral_L5 as behavioral,

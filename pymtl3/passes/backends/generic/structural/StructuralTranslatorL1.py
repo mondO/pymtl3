@@ -13,7 +13,7 @@ from pymtl3.passes.rtlir import StructuralRTLIRSignalExpr as sexp
 from pymtl3.passes.rtlir.structural.StructuralRTLIRGenL1Pass import (
     StructuralRTLIRGenL1Pass,
 )
-from pymtl3.passes.rtlir.util.utility import get_component_full_name
+from pymtl3.passes.rtlir.utils.utility import get_component_full_name
 
 from ..BaseRTLIRTranslator import BaseRTLIRTranslator, TranslatorMetadata
 
