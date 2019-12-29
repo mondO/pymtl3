@@ -40,8 +40,8 @@ class CollectSignalPass( BasePass ):
     wav_srcs = []
 
     # Now we create per-cycle signal value collect functions
-    for x in top._dsl.all_signals:
-      if x.is_top_level_signal() and ( not repr(x).endswith('.clk') or x is top.clk ):
+    for x in top._dsl.get_all_signals():
+      if not repr(x).endswith('.clk') or x is top.clk:
         if is_bitstruct_class( x._dsl.Type ):
           wav_srcs.append( "wavmeta.text_sigs['{0}'].append( to_bits({0}).bin() )".format(x) )
         elif issubclass( x._dsl.Type, Bits ):
